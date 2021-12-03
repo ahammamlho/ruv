@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:ruvv/ads/ads.dart';
 import 'package:ruvv/ads/ads_data.dart';
+import 'package:flutter/material.dart';
 
 class NoAds extends Ads {
   NoAds(AdsData adsData) : super(adsData);
@@ -27,8 +27,10 @@ class NoAds extends Ads {
   Widget getBannerAdWidget() => Container();
 
   @override
-  Widget showNativeAd() => Container();
+  Future<void> disposeBanner() async {}
 
   @override
-  Future<void> disposeBanner() async {}
+  Widget getNativeAdWidget() {
+    return Container();
+  }
 }

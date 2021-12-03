@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ruvv/ads/ads.dart';
 import 'package:ruvv/ads/custom_banner.dart';
 import 'package:ruvv/pages/pageLoading.dart';
+import 'package:ruvv/pages/pagePlay.dart';
 import 'package:ruvv/utils.dart';
 
 class PageResultat extends StatefulWidget {
@@ -148,8 +149,11 @@ class _PageResultatState extends State<PageResultat> {
                                 onPressed: () {
                                   widget.ads.showInterstitialAd();
                                   player.stop();
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => PageLoading()));
+                                  Navigator.of(context)
+                                      .pushReplacement(MaterialPageRoute(
+                                          builder: (context) => PagePlay(
+                                                ads: widget.ads,
+                                              )));
                                 }),
                             IconButton(
                                 icon: FaIcon(

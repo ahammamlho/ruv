@@ -1,9 +1,9 @@
+import 'package:ruvv/ads/ads.dart';
+import 'package:ruvv/ads/ads_data.dart';
+import 'package:ruvv/log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ironsource_x/ironsource.dart';
 import 'package:flutter_ironsource_x/models.dart';
-import 'package:ruvv/ads/ads_data.dart';
-import 'package:ruvv/ads/ads.dart';
-import 'package:ruvv/log.dart';
 
 class IronSourceAD extends Ads with IronSourceListener {
   IronSourceBannerAd? _bannerAd;
@@ -32,9 +32,6 @@ class IronSourceAD extends Ads with IronSourceListener {
     );
   }
 
-  //NATIVE
-  @override
-  Widget showNativeAd() => Container();
   // Banner
   @override
   Future<void> loadBannerAd(_) async {
@@ -99,6 +96,12 @@ class IronSourceAD extends Ads with IronSourceListener {
   void onInterstitialAdShowFailed(IronSourceError error) {
     Log.log("onInterstitialAdShowFailed ${error.toString()}");
     loadInterstitialAd();
+  }
+
+  // native
+  @override
+  Widget getNativeAdWidget() {
+    return Container();
   }
 
   @override

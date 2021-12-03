@@ -1,7 +1,7 @@
 // ignore_for_file: unused_element, prefer_const_constructors
 
-import 'package:flutter/material.dart';
 import 'package:ruvv/ads/ads_data.dart';
+import 'package:flutter/material.dart';
 
 abstract class Ads {
   late final AdsData adsData;
@@ -17,7 +17,7 @@ abstract class Ads {
   Future<void> loadInterstitialAd();
   void showInterstitialAd();
 
-  Widget showNativeAd();
+  Widget getNativeAdWidget();
 
   Future<void> init();
 }

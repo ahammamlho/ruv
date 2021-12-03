@@ -72,8 +72,10 @@ class _PagePlayState extends State<PagePlay> {
             child: Column(
               children: [
                 SizedBox(height: 10),
-                //CustomBanner(ads: widget.ads),
-                widget.ads.showNativeAd(),
+                CustomBanner(ads: widget.ads),
+                // Container(
+                //   child: widget.ads.getNativeAdWidget(),
+                // ),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -187,9 +189,9 @@ class _PagePlayState extends State<PagePlay> {
                                   ),
                                   onPressed: () {
                                     Share.share("""
-          best App :
-          http://play.google.com/store/apps/details?id=com.fnfgameplayherror.musiclittlephoenihuggy
-          """);
+                best App :
+                http://play.google.com/store/apps/details?id=com.fnfgameplayherror.musiclittlephoenihuggy
+                """);
                                   }),
                             ),
                           ],
@@ -201,8 +203,6 @@ class _PagePlayState extends State<PagePlay> {
               ],
             ),
           ),
-
-          //  CustomBanner(ads: widget.ads),
         ],
       ),
     );

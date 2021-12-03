@@ -1,14 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:ruvv/ads/ads.dart';
 import 'package:ruvv/ads/ads_data.dart';
 import 'package:ruvv/log.dart';
-import 'package:native_admob_flutter/native_admob_flutter.dart' as native;
+import 'package:flutter/material.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart' as native_admob;
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdmobAD extends Ads {
   BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
   int _numInterstitialLoadAttempts = 0;
+  int _numBannerLoadAttempts = 0;
+  int _maxAttempts = 5;
 
   AdmobAD(AdsData adsData) : super(adsData);
 
@@ -20,7 +22,7 @@ class AdmobAD extends Ads {
   // init
   @override
   Future<InitializationStatus> init() async {
-    await native.MobileAds.initialize();
+    await native_admob.MobileAds.initialize();
     return MobileAds.instance.initialize();
   }
 
@@ -33,10 +35,14 @@ class AdmobAD extends Ads {
       request: AdRequest(),
       listener: BannerAdListener(onAdLoaded: (_) {
         Log.log('banner ad loaded');
+        _numBannerLoadAttempts = 0;
         onLoaded!();
       }, onAdFailedToLoad: (ad, err) {
         Log.log('Failed to load banner ad: ${err.message}');
+        ad.dispose();
         _bannerAd = null;
+        _numBannerLoadAttempts += 1;
+        if (_numBannerLoadAttempts <= _maxAttempts) loadBannerAd(onLoaded);
       }),
     );
     return _bannerAd!.load();
@@ -75,7 +81,7 @@ class AdmobAD extends Ads {
         Log.log('Failed to load interstitial ad: ${err.message}');
         _numInterstitialLoadAttempts += 1;
         _interstitialAd = null;
-        if (_numInterstitialLoadAttempts <= 5) loadInterstitialAd();
+        if (_numInterstitialLoadAttempts <= _maxAttempts) loadInterstitialAd();
       }),
     );
   }
@@ -103,21 +109,15 @@ class AdmobAD extends Ads {
     _interstitialAd = null;
   }
 
-  Widget showNativeAd() {
-    //if (adsData.isAdmob != "1") return (Container());
-    return native.NativeAd(
+  // Native Ad
+  @override
+  Widget getNativeAdWidget() {
+    return native_admob.NativeAd(
       height: 300,
-      buildLayout: native.mediumAdTemplateLayoutBuilder,
-      loading: Container(
-        height: 20,
-        color: Colors.green,
-      ),
-      error: Container(
-        height: 20,
-        color: Colors.red,
-      ),
+      buildLayout: native_admob.mediumAdTemplateLayoutBuilder,
+      loading: Container(),
+      error: Container(),
       unitId: adsData.idNative,
     );
-    
-
-    
+  }
+}

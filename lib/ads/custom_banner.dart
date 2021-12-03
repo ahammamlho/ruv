@@ -1,7 +1,8 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:ruvv/ads/ads.dart';
 import 'package:ruvv/log.dart';
+import 'package:flutter/cupertino.dart';
 
 class CustomBanner extends StatefulWidget {
   final Ads ads;
@@ -27,7 +28,7 @@ class _CustomBannerState extends State<CustomBanner> {
   @override
   Widget build(BuildContext context) {
     if (!widget.ads.isBannerAdReady) return Container();
-    Log.log("Banner Showed");
+    Log.log("Banner is visible");
     return widget.ads.getBannerAdWidget();
   }
 }
