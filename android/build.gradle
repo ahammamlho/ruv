@@ -1,0 +1,41 @@
+buildscript {
+    ext.kotlin_version = '1.6.0'
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' } // oneSugnale needed
+        maven {url 'https://android-sdk.is.com/'} // irronsourse needed
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    //    classpath 'com.google.gms:google-services:4.3.10' // firebase
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.6, 0.99.99]' // oneSignale
+    }
+}
+
+
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven{
+            url "https://maven.google.com"
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

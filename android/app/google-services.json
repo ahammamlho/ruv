@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "266059803429",
+    "project_id": "first-app-ruvv",
+    "storage_bucket": "first-app-ruvv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266059803429:android:9607554d4c9225b5a1c8cc",
+        "android_client_info": {
+          "package_name": "com.broapps.ruvv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266059803429-ti2otorv9s6u9l75l9njkcmg6use0nsn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7Dmb9JBkQS4UbcWleYTkmJgnzmLhTzWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266059803429-ti2otorv9s6u9l75l9njkcmg6use0nsn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
