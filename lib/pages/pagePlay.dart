@@ -71,11 +71,9 @@ class _PagePlayState extends State<PagePlay> {
             ),
             child: Column(
               children: [
-                SizedBox(height: 10),
-                CustomBanner(ads: widget.ads),
-                // Container(
-                //   child: widget.ads.getNativeAdWidget(),
-                // ),
+                //SizedBox(height: 10),
+                // CustomBanner(ads: widget.ads),
+                widget.ads.getNativeAdWidget(),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
